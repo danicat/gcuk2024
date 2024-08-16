@@ -10,7 +10,7 @@ import (
 func TestRun(t *testing.T) {
 	ctx := context.Background()
 	ctx, cancel := context.WithTimeout(ctx, time.Second)
-	defer cancel()
+	t.Cleanup(cancel)
 
 	err := run(ctx, ":8080")
 	if err != nil && !errors.Is(err, context.DeadlineExceeded) {
